@@ -4,14 +4,9 @@ This repository contains the statistical analysis files and data for the researc
 
 ## Study Overview
 
-This study investigates how temporal segmentation affects spatial memory in virtual environments. Participants (n=76 complete, 97 enrolled) learned the locations of 16 objects in a custom-built Unity3D virtual environment across two temporally separated sessions. The study examined whether temporal divisions during learning affect spatial memory across multiple behavioral tasks.
+Spatial navigation requires learning environments larger than what can be perceived at one time, necessitating the integration of distinct episodes into a unified representation. Modern theories postulate hierarchical models of space, in which environments are mentally segmented, allowing more precise navigation within subregions and less precise strategies across them. But how does space become segmented into subregions?
 
-### Key Findings
-
-- **Temporal segmentation effects were task-dependent**, creating a gradient across different measures
-- **Strongest effects**: Free recall (objects recalled together) and distance-based tasks (elongation, estimation accuracy)
-- **Weakest effects**: Configurational tasks (JRD, mapping) requiring broader spatial knowledge
-- **No effects**: Object viewing (perceptual control task), demonstrating divergent validity
+Here, we investigate how temporal segmentation subserves memory in a virtual environment. While the dissociation of spatial and temporal information has been demonstrated for screen-size environments, this is the first experiment where this dissociation is tested in a freely navigable environment. Participants (n=76 complete, 97 enrolled) learned the locations of 16 objects in a custom-built Unity3D virtual environment across two temporally separated sessions. This design allowed us to examine whether temporal divisions during learning affect spatial memory across multiple behavioral tasks, with key aspects making temporal distance dissociable from spatial distance as well as whether objects were learned by being travelled between directly or not.
 
 ## Repository Structure
 
@@ -47,130 +42,103 @@ temporal_divisions/
 
 ## Experimental Tasks
 
+The study employed six behavioral tasks, administered in the following order after participants completed the environment learning procedure.
+
 ### 1. Free Recall
 **Location**: `analyses/tasks/free_recall/`
 
-Participants typed object names in any order they wished.
+In the free recall task, participants entered the names of all the objects from the environment, one at a time. Participants could enter names in any order they wished. We computed the number of transitions between each group type, correcting for the fact that the number of possible transitions varied, and adjusted for base rate differences accordingly.
 
 **Files**:
-- `free_recall_counts.jasp` - Overall transition analysis
-- `free_recall_counts_sex.jasp` - Sex comparison
-- `free_recall_counts_female.jasp` - Female participants only
-- `free_recall_counts_male.jasp` - Male participants only
-
-**Key Metric**: Weighted transition probabilities between object groups
-
-**Main Finding**: ✓✓✓ **Strong temporal segmentation** - Objects from same Time Group recalled consecutively (TS > NS > ND transitions)
+- `free_recall_counts.jasp` – Overall transition analysis
+- `free_recall_counts_sex.jasp` – Sex comparison
+- `free_recall_counts_female.jasp` – Female participants only
+- `free_recall_counts_male.jasp` – Male participants only
 
 ---
 
 ### 2. Judgment of Relative Direction (JRD)
 **Location**: `analyses/tasks/jrd/`
 
-Participants estimated directions between object triplets to measure configurational accuracy.
+In the JRD task, participants estimated the directions between different sets of objects, a measure of the configurational accuracy of the layout. On each trial, participants imagined standing at the location of the first object, facing towards the second object, and indicated the direction of the third object by rotating a compass on the screen.
 
 **Files**:
-- `jrd_min_diff.jasp` - Angular difference (overall)
-- `jrd_min_diff_sex.jasp` - Angular difference with sex comparison
-- `jrd_min_diff_female.jasp` - Female participants only
-- `jrd_min_diff_male.jasp` - Male participants only
-- `jrd_lr.jasp` - Left-right accuracy (overall)
-- `jrd_lr_sex.jasp` - Left-right accuracy with sex comparison
-- `jrd_lr_female.jasp` - Female participants only
-- `jrd_lr_male.jasp` - Male participants only
+- `jrd_min_diff.jasp` – Angular difference (overall)
+- `jrd_min_diff_sex.jasp` – Angular difference with sex comparison
+- `jrd_min_diff_female.jasp` – Female participants only
+- `jrd_min_diff_male.jasp` – Male participants only
+- `jrd_lr.jasp` – Left-right accuracy (overall)
+- `jrd_lr_sex.jasp` – Left-right accuracy with sex comparison
+- `jrd_lr_female.jasp` – Female participants only
+- `jrd_lr_male.jasp` – Male participants only
 
-**Key Metrics**:
+**Metrics**:
 - Angular accuracy (absolute angular difference between response and correct angle)
 - Left-right direction accuracy (binary: correct side or not)
-
-**Main Finding**: ✓ **Weak temporal segmentation** - Left-right accuracy better for TS than ND; no effect on angular difference
 
 ---
 
 ### 3. Distance Estimation
 **Location**: `analyses/tasks/distance_estimation/`
 
-Participants estimated distances in feet between object pairs.
+For each trial, participants saw two object names and were instructed to estimate the distance in feet between them. We computed two metrics: the correlation between actual and estimated distances, and a distance ratio (participant's estimate divided by actual distance).
 
-**Files - Elongation Measure**:
-- `dist_est_elong.jasp` - Distance ratio (overall)
-- `dist_est_elong_sex.jasp` - Distance ratio with sex comparison
-- `dist_est_elong_female.jasp` - Female participants only
-- `dist_est_elong_male.jasp` - Male participants only
+**Files – Elongation Measure**:
+- `dist_est_elong.jasp` – Distance ratio (overall)
+- `dist_est_elong_sex.jasp` – Distance ratio with sex comparison
+- `dist_est_elong_female.jasp` – Female participants only
+- `dist_est_elong_male.jasp` – Male participants only
 
-**Files - Correlation Measure**:
-- `dist_est_corr.jasp` - Correlation accuracy (overall)
-- `dist_est_corr_sex.jasp` - Correlation with sex comparison
-- `dist_est_corr_female.jasp` - Female participants only
-- `dist_est_corr_male.jasp` - Male participants only
-
-**Key Metrics**:
-- Distance ratio (estimated distance / actual distance)
-- Correlation (Pearson r between estimated and actual distances)
-
-**Main Finding**: ✓✓✓ **Strong temporal segmentation**
-- ND pairs perceived as MORE elongated (farther apart) than NS and TS pairs
-- ND pairs showed BETTER correlation accuracy than NS pairs
-- Suggests temporal boundaries help distance discrimination
+**Files – Correlation Measure**:
+- `dist_est_corr.jasp` – Correlation accuracy (overall)
+- `dist_est_corr_sex.jasp` – Correlation with sex comparison
+- `dist_est_corr_female.jasp` – Female participants only
+- `dist_est_corr_male.jasp` – Male participants only
 
 ---
 
 ### 4. Distance Comparison
 **Location**: `analyses/tasks/distance_comparison/`
 
-Two-alternative forced choice: which of two objects is closer to an anchor object?
+This two-alternative forced choice task presented participants with one anchor object at the top of the screen and two comparison objects below. The participant's task was to select which of the two comparison objects was closer to the anchor object.
 
 **Files**:
-- `dist_comp.jasp` - Overall accuracy
-- `dist_comp_sex.jasp` - Accuracy with sex comparison
-- `dist_comp_female.jasp` - Female participants only
-- `dist_comp_male.jasp` - Male participants only
-
-**Key Metric**: Accuracy (% correct choices)
-
-**Main Finding**: ✓ **Weak temporal segmentation** - ND trials slightly more accurate than within-Time Group trials
+- `dist_comp.jasp` – Overall accuracy
+- `dist_comp_sex.jasp` – Accuracy with sex comparison
+- `dist_comp_female.jasp` – Female participants only
+- `dist_comp_male.jasp` – Male participants only
 
 ---
 
 ### 5. Object Viewing (Control Task)
 **Location**: `analyses/tasks/object_viewing/`
 
-Perceptual control task: objects shown individually, tilted left/right or straight.
+This perceptual control task presented each object individually over a black background. For half of the trials, the object was tilted 15° to the left or right; for the other half, the object was upright. Participants indicated the object's orientation as fast as possible. Critically, this task did not involve remembering the object locations, serving as a measure of divergent validity.
 
-**Files - Accuracy**:
-- `object_view_accuracy.jasp` - Overall accuracy
-- `object_view_accuracy_sex.jasp` - Accuracy with sex comparison
-- `object_view_accuracy_female.jasp` - Female participants only
-- `object_view_accuracy_male.jasp` - Male participants only
+**Files – Accuracy**:
+- `object_view_accuracy.jasp` – Overall accuracy
+- `object_view_accuracy_sex.jasp` – Accuracy with sex comparison
+- `object_view_accuracy_female.jasp` – Female participants only
+- `object_view_accuracy_male.jasp` – Male participants only
 
-**Files - Reaction Time**:
-- `object_view_rt_correct_mean.jasp` - Mean RT for correct responses (overall)
-- `object_view_rt_correct_mean_sex.jasp` - RT with sex comparison
-- `object_view_rt_correct_mean_female.jasp` - Female participants only
-- `object_view_rt_correct_mean_male.jasp` - Male participants only
-
-**Key Metrics**:
-- Accuracy (% correct orientation judgments)
-- Reaction time (seconds for correct responses)
-
-**Main Finding**: **No temporal segmentation effects** - As expected for non-spatial perceptual task (divergent validity)
+**Files – Reaction Time**:
+- `object_view_rt_correct_mean.jasp` – Mean RT for correct responses (overall)
+- `object_view_rt_correct_mean_sex.jasp` – RT with sex comparison
+- `object_view_rt_correct_mean_female.jasp` – Female participants only
+- `object_view_rt_correct_mean_male.jasp` – Male participants only
 
 ---
 
 ### 6. Mapping
 **Location**: `analyses/tasks/mapping/`
 
-Top-down map placement: participants dragged objects to correct locations on a blank map.
+Participants viewed a top-down map of the empty environment with external landmarks (mountains and forest) but no objects. The name and image of each object was shown one by one, and participants indicated the correct location of each object on the map by dragging and dropping.
 
 **Files**:
-- `mapping.jasp` - Distance ratio (overall)
-- `mapping_sex.jasp` - Distance ratio with sex comparison
-- `mapping_female.jasp` - Female participants only
-- `mapping_male.jasp` - Male participants only
-
-**Key Metric**: Distance ratio between placed and actual object locations
-
-**Main Finding**: ✓✓ **Moderate temporal segmentation** - ND pairs more elongated than TS pairs, with NS in between
+- `mapping.jasp` – Distance ratio (overall)
+- `mapping_sex.jasp` – Distance ratio with sex comparison
+- `mapping_female.jasp` – Female participants only
+- `mapping_male.jasp` – Male participants only
 
 ---
 
@@ -183,21 +151,15 @@ Three questionnaires assessed navigation ability and experience:
 
 1. **Santa Barbara Sense of Direction Scale (SBSOD)**
    - Location: `data/questionnaires/sbsod/`
-   - 15-item self-report of spatial orientation ability (7-point Likert scale)
-   - Good reliability and validity for predicting wayfinding performance
+   - A 15-item self-report measure of spatial orientation ability rated on a 7-point Likert scale. The scale has demonstrated good internal consistency and test-retest reliability, correlating well with performance on spatial tasks and real-world wayfinding abilities (Hegarty, 2002).
 
 2. **Navigation Strategies Questionnaire (NSQ)**
    - Location: `data/questionnaires/nsq/`
-   - 14-item measure of map-based vs. scene-based navigation preference
-   - Mapping score = difference between map and scene responses
+   - A 14-item assessment tool measuring preference for cognitive map-based versus scene-based navigation. Developed by Brunec et al. (2019), it presents binary choices between map-based strategies (bird's-eye visualization) and scene-based strategies (sequential landmark visualization).
 
 3. **Video Game Questionnaire (VGQ)**
    - Location: `data/questionnaires/vgq/`
-   - Custom questionnaire on video game experience
-   - Focus on navigational games (action-adventure, RPGs)
-   - Time spent gaming (recent and lifetime)
-
-**Key Finding**: VGQ (video game experience) was the strongest predictor of navigation performance, correlating with 7/8 navigation measures
+   - A self-reported questionnaire focused on participants' experience playing video games, particularly video games with significant navigational components.
 
 ---
 
@@ -207,138 +169,48 @@ Three questionnaires assessed navigation ability and experience:
 **Location**: `analyses/Correlations_jun25.ipynb`
 
 Comprehensive correlation analysis examining three key relationships:
-
-1. **Overall Performance × Questionnaires**
-   - How task performance relates to individual differences (SBSOD, NSQ, VGQ)
-   - VGQ most strongly correlated with performance
-
-2. **Temporal Segmentation Scores Across Tasks**
-   - ND-NS difference scores (segmentation strength) correlated between tasks
-   - Distance estimation segmentation correlated with JRD segmentation
-
-3. **Overall Performance × Segmentation Strength**
-   - Within-task correlation: does better performance relate to stronger segmentation?
-   - Distance tasks showed strongest relationships
-
-**Visualizations**: Correlation matrices with significance testing, heatmaps
-
----
+1. Overall performance and questionnaires
+2. Temporal segmentation scores across tasks
+3. Overall performance and segmentation strength
 
 ### factor analysis.ipynb
 **Location**: `analyses/factor analysis.ipynb`
 
-Exploratory factor analysis on z-scored task performance using Oblimin rotation (allows correlated factors).
-
-**Variables Analyzed**:
-- JRD angular difference and left-right accuracy
-- Distance estimation correlation and elongation
-- Distance comparison accuracy
-- Mapping distances
-
-**Three-Factor Solution**:
-1. **Factor 1**: JRD tasks (configurational spatial knowledge)
-2. **Factor 2**: Distance comparison + distance estimation correlation
-3. **Factor 3**: Distance estimation elongation + mapping
-
-**Key Insight**: Tasks cluster by type of spatial representation required
+Exploratory factor analysis on Z-scored task data using Oblimin rotation to examine the underlying structure of the navigation tasks.
 
 ---
 
 ## Experimental Design
 
-### Virtual Environment
-- Custom Unity3D environment (150×150 virtual meters square park)
-- 16 objects on pedestals distributed across 4 quadrants
-- Distal landmarks (mountains, trees) for orientation
-- Adapted from Peer & Epstein (2021)
+### Object Relations
 
-### Object Groupings
+We describe *relations* between any pair of objects as follows:
 
-Objects were organized into groups to control temporal and travel-based learning:
-
-- **Travel Groups**: Sets of 4 objects participants traveled between directly (one object per quadrant)
-- **Time Groups**: Sets of 8 objects (2 Travel Groups) learned in one session
-
-This created three types of object relations:
-
-| Code | Name | Description |
-|------|------|-------------|
-| **TS** | Traveled & Same time | Same Travel Group and Time Group (traveled between directly, same session) |
-| **NS** | Not traveled & Same time | Different Travel Groups but same Time Group (not traveled between, same session) |
+| Abbreviation | Meaning | Description |
+|--------------|---------|-------------|
+| **TS** | Traveled & Same time | Same Travel Group (traveled between directly, same session) |
+| **NS** | Not traveled & Same time | Same Time Group but different Travel Groups (never traveled between directly, same session) |
 | **ND** | Not traveled & Different time | Different Time Groups (never traveled between, different sessions) |
 
 ### Key Contrasts
 
 1. **ND vs NS**: Tests temporal segmentation effect (controlling for travel)
 2. **TS vs NS**: Tests travel effect (within same time)
-3. **ND vs TS**: Combined temporal + travel effect
+3. **ND vs TS**: Test temporal segmentation with travel as a covariate
 
 ---
 
 ## Learning Procedure
 
-1. **Session 1**: Learn 8 objects (Time Group 1) to criterion
-   - 5 levels of learning
-   - Level 5: complete 24 trials without errors
+Before participants were tested, they had to learn the locations of objects in the environment to criterion. The learning procedure occurred for one set of eight objects belonging to one Time Group, then, after a delay filled by other tasks, was repeated with the other set of eight objects belonging to the second Time Group.
 
-2. **Delay**: 15-30 minutes of questionnaires (creating temporal boundary)
+1. **Session 1**: Learn 8 objects (Time Group 1) through 5 levels of learning, with Level 5 requiring completion of 24 trials without errors
+
+2. **Delay**: 15-30 minutes of questionnaires (creating the temporal boundary)
 
 3. **Session 2**: Learn remaining 8 objects (Time Group 2) to criterion
 
-4. **Testing**: Six tasks in fixed order
-   - Free recall
-   - JRD (64 trials)
-   - Distance estimation (128 trials)
-   - Distance comparison (96 trials)
-   - Object viewing (289 trials)
-   - Mapping (16 objects)
-
----
-
-## Summary of Results
-
-### Temporal Segmentation Effects by Task
-
-| Task | Effect Strength | Details |
-|------|----------------|---------|
-| **Free Recall** | ✓✓✓ Strong | Objects from same time recalled together (TS > NS > ND) |
-| **Distance Est. (Elongation)** | ✓✓✓ Strong | ND pairs perceived farther apart than NS, TS |
-| **Distance Est. (Correlation)** | ✓✓ Moderate | ND more accurate than NS; TS more accurate than NS |
-| **Mapping** | ✓✓ Moderate | ND pairs more elongated than TS, NS intermediate |
-| **Distance Comparison** | ✓ Weak | ND slightly more accurate than NS+TS |
-| **JRD (Left-right)** | ✓ Weak | TS better than ND |
-| **JRD (Angular)** | - None | No differences between groups |
-| **Object Viewing** | - None | Control task (no spatial component) |
-
-**Legend**: ✓✓✓ = Strong (BF₁₀ > 100), ✓✓ = Moderate (BF₁₀ 10-100), ✓ = Weak (BF₁₀ 3-10), - = No effect
-
-### Gradient of Temporal Segmentation
-
-The results show a **task-dependent gradient**:
-- **Strongest**: Time-based tasks (free recall, distance estimation)
-- **Moderate**: Combined spatial-temporal tasks (mapping)
-- **Weakest**: Pure configurational tasks (JRD)
-- **None**: Non-spatial tasks (object viewing)
-
-This suggests temporal segmentation affects memory for "when" and "how far" more than "where" in an absolute sense.
-
----
-
-## Sex Differences
-
-### Overall Performance
-Males showed advantages in:
-- JRD angular accuracy (p = .009)
-- Distance estimation correlation (p = .012)
-- Distance comparison (p = .006)
-- Object viewing speed and accuracy (p < .05)
-- Video game experience (p < .001)
-- Map-based navigation preference (p = .007)
-
-### Segmentation Effects by Sex
-- **JRD left-right**: Males showed ND vs NS effect; females did not
-- **Mapping**: Females showed ND vs NS effect; males did not
-- **Distance estimation**: Both sexes showed similar elongation effects
+4. **Testing**: Six tasks in fixed order (free recall, JRD, distance estimation, distance comparison, object viewing, mapping)
 
 ---
 
@@ -346,34 +218,29 @@ Males showed advantages in:
 
 ### Task Data Structure
 Each task folder in `data/tasks/` contains:
-- `[task].csv` - All participants
-- `[task]_female.csv` - Female participants only
-- `[task]_male.csv` - Male participants only
+- `[task].csv` – All participants
+- `[task]_female.csv` – Female participants only
+- `[task]_male.csv` – Male participants only
 
 ### Questionnaire Data Structure
 Each questionnaire folder in `data/questionnaires/` contains:
-- `[questionnaire].csv` - All participants
-- `[questionnaire]_female.csv` - Female participants only
-- `[questionnaire]_male.csv` - Male participants only
-
-### Data Fields
-- **Participant ID**: Unique identifier
-- **Task-specific measures**: Varies by task (see individual task descriptions)
-- **Group contrasts**: TS, NS, ND comparisons
+- `[questionnaire].csv` – All participants
+- `[questionnaire]_female.csv` – Female participants only
+- `[questionnaire]_male.csv` – Male participants only
 
 ---
 
 ## Statistical Approach
 
 ### Methods
-- **Non-parametric tests**: Wilcoxon signed-rank tests (for non-normal distributions)
+- **Non-parametric tests**: Wilcoxon signed-rank tests (to avoid normality assumption)
 - **Parametric tests**: Paired t-tests where appropriate
 - **Effect sizes**: Rank-biserial correlation (r) for Wilcoxon; Cohen's d for t-tests
 - **Bayesian statistics**: Bayes factors (BF₁₀) reported for all tests
 
 ### Software
-- **JASP** version 0.16.4 - Open-source statistical software
-- **Python** - pandas, numpy, scipy, matplotlib, seaborn (see requirements.txt)
+- **JASP** version 0.16.4 – Open-source statistical software
+- **Python** – pandas, numpy, scipy, matplotlib, seaborn
 
 ---
 
@@ -422,22 +289,22 @@ https://aspredicted.org/qr7ts.pdf
 **Corresponding Author**:
 Steven M. Weisberg
 Department of Psychology
-University of Florida
-945 Center Drive
-Gainesville, FL 32611, USA
-Email: stevenweisberg@ufl.edu
+University of Texas at Arlington
+701 S Nedderman Dr
+Arlington, TX 76019, USA
+Email: steven.weisberg@uta.edu
 
 ---
 
 ## Acknowledgments
 
-Data collection: Yunxiao Chen, Cecelia Albright, Yukshi Jain
+The authors thank Yunxiao Chen, Cecelia Albright, and Yukshi Jain for their assistance with data collection.
 
 ---
 
 ## Funding
 
-National Institute of Aging grant 1K01AC070333-01 (to S.M. Weisberg)
+This work was supported by the National Institute of Aging (1K01AC070333-01) grant to Steven M. Weisberg.
 
 ---
 
@@ -446,32 +313,27 @@ National Institute of Aging grant 1K01AC070333-01 (to S.M. Weisberg)
 ### Pattern: `[task]_[measure]_[subgroup].[ext]`
 
 **Task abbreviations**:
-- `jrd` - Judgment of Relative Direction
-- `dist_est` - Distance Estimation
-- `dist_comp` - Distance Comparison
-- `free_recall` - Free Recall
-- `object_view` - Object Viewing
-- `mapping` - Mapping
+- `jrd` – Judgment of Relative Direction
+- `dist_est` – Distance Estimation
+- `dist_comp` – Distance Comparison
+- `free_recall` – Free Recall
+- `object_view` – Object Viewing
+- `mapping` – Mapping
 
 **Measure suffixes** (task-specific):
-- `min_diff` - Minimum angular difference (JRD)
-- `lr` - Left-right accuracy (JRD)
-- `elong` - Elongation/distance ratio (Distance Estimation, Mapping)
-- `corr` - Correlation accuracy (Distance Estimation)
-- `counts` - Transition counts (Free Recall)
-- `accuracy` - Response accuracy (Object Viewing, Distance Comparison)
-- `rt_correct_mean` - Mean reaction time for correct responses (Object Viewing)
+- `min_diff` – Minimum angular difference (JRD)
+- `lr` – Left-right accuracy (JRD)
+- `elong` – Elongation/distance ratio (Distance Estimation, Mapping)
+- `corr` – Correlation accuracy (Distance Estimation)
+- `counts` – Transition counts (Free Recall)
+- `accuracy` – Response accuracy (Object Viewing, Distance Comparison)
+- `rt_correct_mean` – Mean reaction time for correct responses (Object Viewing)
 
 **Subgroup suffixes**:
-- No suffix - All participants
-- `_sex` - Sex comparison analysis
-- `_female` - Female participants only
-- `_male` - Male participants only
-
-**Examples**:
-- `jrd_lr_sex.jasp` - JRD left-right accuracy with sex as factor
-- `dist_est_elong_female.csv` - Distance estimation elongation data for females
-- `mapping.jasp` - Mapping analysis for all participants
+- No suffix – All participants
+- `_sex` – Sex comparison analysis
+- `_female` – Female participants only
+- `_male` – Male participants only
 
 ---
 
@@ -484,6 +346,6 @@ You are free to:
 - **Adapt** — remix, transform, and build upon the material for any purpose, even commercially
 
 Under the following terms:
-- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
 
 [![CC BY 4.0](https://licensebuttons.net/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)
